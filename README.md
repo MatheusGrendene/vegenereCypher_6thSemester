@@ -1,13 +1,13 @@
-# Vegenère Cypher
+# Vegenère Cipher
 
 ## Description
-This is a project my professor from System's Security had asked our class to do, each student had to pick a cypher and develop it.
+This is a project my professor from System's Security had asked our class to do, each student had to pick a cipher and develop it.
 
 This project only encrypt and decrypt letters, all of the non aphabetic characters in the input file will be read. We'll also be using only capital letters, no need to type the message or key in capital letters though, the code already converts it into it ;)
 
 ### Key Derivation
 
-This project uses the PBKDF2 algorithm (via Node.js `crypto` module) to securely derive a cryptographic key from the user-supplied password, following good security practices.
+This project uses the PBKDF2 algorithm (via Node.js `crypto` module) to securely derive a cryptographic key from the user-supplied key, following good security practices.
 
 ## Requirements
 * Have node installed
@@ -20,20 +20,20 @@ The command we'll be typing will look like this:<br>
 `node vegenere.js <file.txt> <Key> <mode>`<br>
 * The file can be named what ever you like.<br>
 * The Key should be typed in the terminal with the rest of the command
-* The available modes are `'cypher'` and `decypher`.
+* The available modes are `'cipher'` and `decipher`.
 
 ### Encrypt
 
 To encrypt you should have a text file with the message for encryption.<br>
-For this we'll use "to-decypher-file-name.txt" as a file example and "key" as key
+For this we'll use "to-decipher-file-name.txt" as a file example and "key" as key
 
-* Enter `node vegenere.js to-cypher-file-name.txt key cypher` on the terminal
+* Enter `node vegenere.js to-cipher-file-name.txt key cipher` on the terminal
 
 ### Decrypt
 
 To decrypt you should have a text file with the message for decryption.<br>
-For this we'll use "to-decypher-file-name.txt" as a file example and "key" as key
-* Enter `node vegenere.js to-decypher-file-name.txt key decypher` on the terminal
+For this we'll use "to-decipher-file-name.txt" as a file example and "key" as key
+* Enter `node vegenere.js to-decipher-file-name.txt key decipher` on the terminal
 
 
 ### Output
