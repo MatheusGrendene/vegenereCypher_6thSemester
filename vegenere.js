@@ -55,7 +55,7 @@ else if (mode === 'decipher') {
 
     const expandedKey = expandKey(derivedLetters, encryptedMessage.length);
     decryptedMessage = decrypt(encryptedMessage, expandedKey, letterToIndex, indexToLetter);
-    outputFile = `${inputBase}_decifrado.txt`;
+    outputFile = `${inputBase.replace('_cifrado', '')}_decifrado.txt`;
     fs.writeFileSync(outputFile, decryptedMessage);
 }
 else {
