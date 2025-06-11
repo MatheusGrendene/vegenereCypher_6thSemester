@@ -42,7 +42,7 @@ let outputFile;
 if (mode === 'cipher') {
     const salt = crypto.randomBytes(16);
     const derivedKey = deriveKey(key, salt);
-    const derivedLetters = getDerivedLetters(derivedKey);
+    let derivedLetters = getDerivedLetters(derivedKey);
 
     const message = content.toUpperCase().replace(/[^A-Z]/g, "");
     const expandedKey = expandKey(derivedLetters, message.length);
