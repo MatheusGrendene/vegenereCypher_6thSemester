@@ -44,17 +44,28 @@ if (mode === 'cipher') {
     fs.writeFileSync(`${inputBase}_cifrado.txt`, salt.toString('hex') + '\n' + encryptedMessage);
 }
 else if (mode === 'decipher') {
-    const saltHex = content.split('\n')[0];
-    const salt = Buffer.from(saltHex, 'hex');
-    const encryptedMessage = content.split('\n')[1];
+    const lines = content.split('\n');
 
-    const derivedKey = deriveKey(key, salt);
-    const derivedLetters = getDerivedLetters(derivedKey);
+    let encryptedMessage;
+    let derivedLetters;
+
+    if (lines.length < 2) {
+        console.warn("\nWarning!\nSalt was not detected on the input file. \nFalling back to less secure mode without PBKDF2.\n");
+        encryptedMessage = lines[0];
+        derivedLetters = key.toUpperCase().replace(/[^A-Z]/g, "").split('');
+    } else {
+        const saltHex = lines[0];
+        const salt = Buffer.from(saltHex, 'hex');
+        encryptedMessage = lines[1];
+
+        const derivedKey = deriveKey(key, salt);
+        derivedLetters = getDerivedLetters(derivedKey);
+    }
+
     const message = encryptedMessage.toUpperCase().replace(/[^A-Z]/g, "");
-
-
     const expandedKey = expandKey(derivedLetters, message.length);
-    decryptedMessage = decrypt(message, expandedKey, letterToIndex, indexToLetter);
+    const decryptedMessage = decrypt(message, expandedKey, letterToIndex, indexToLetter);
+
     outputFile = `${inputBase.replace('_cifrado', '')}_decifrado.txt`;
     fs.writeFileSync(outputFile, decryptedMessage);
 }
