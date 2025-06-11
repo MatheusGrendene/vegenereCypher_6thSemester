@@ -8,8 +8,8 @@ const key = process.argv[3];
 const mode = process.argv[4];
 
 if (!inputFile || !key || !mode) {
-    console.error("Uso: node vegenere.js <arquivo_entrada> <chave> <modo>");
-    console.error("Modos disponíveis: 'cipher' ou 'deipher'");
+    console.error("Usage: node vegenere.js <input_file> <password> <mode>");
+    console.error("Available Modes: 'cipher' and 'deipher'");
     process.exit(1);
 }
 
@@ -53,16 +53,16 @@ else if (mode === 'decipher') {
     const message = encryptedMessage.toUpperCase().replace(/[^A-Z]/g, "");
 
 
-    const expandedKey = expandKey(derivedLetters, encryptedMessage.length);
-    decryptedMessage = decrypt(encryptedMessage, expandedKey, letterToIndex, indexToLetter);
+    const expandedKey = expandKey(derivedLetters, message.length);
+    decryptedMessage = decrypt(message, expandedKey, letterToIndex, indexToLetter);
     outputFile = `${inputBase.replace('_cifrado', '')}_decifrado.txt`;
     fs.writeFileSync(outputFile, decryptedMessage);
 }
 else {
-    console.error("Modo inválido. Use 'cipher' ou 'decipher'.");
+    console.error("Invalid mode. Use 'cipher' or 'decipher'.");
     process.exit(1);
 }
 
-console.log("Tudo pronto!\n");
+console.log("All done!\n");
 
-console.log(`Arquivo de saída: ${outputFile}`);
+console.log(`Output file: ${outputFile}`);
