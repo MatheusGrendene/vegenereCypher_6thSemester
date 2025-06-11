@@ -63,7 +63,7 @@ else if (mode === 'decipher') {
     let derivedLetters;
 
     if (lines.length < 2) {
-        console.warn("\x1b[33m⚠️  Warning:\x1b[0m No salt detected. Using less secure classic mode without PBKDF2.\n");
+        console.warn("\x1b[33m⚠️  Warning:\x1b[0m No salt detected. Using less secure mode without PBKDF2.\n");
 
         encryptedMessage = lines[0];
         derivedLetters = key.toUpperCase().replace(/[^A-Z]/g, "").split('');
