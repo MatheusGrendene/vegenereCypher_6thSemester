@@ -9,10 +9,6 @@ const key = process.argv[3];
 const mode = process.argv[4];
 
 if (!inputFile || !key || !mode) {
-    /* console.error("\x1b[31m❌ Error:\x1b[0m Missing arguments");
-    console.log("➜ Usage: node vegenere.js <input_file> <password> <mode>\n➜ Available Modes: 'cipher' and 'deipher'");
-    process.exit(1); */
-
     console.error("\x1b[31m❌ Missing required arguments.\x1b[0m\n");
     console.log("\x1b[1mUsage:\x1b[0m");
     console.log("  node vigenere.js <input_file.txt> <password> <mode>\n");
@@ -62,18 +58,20 @@ else if (mode === 'decipher') {
     let encryptedMessage;
     let derivedLetters;
 
-    if (lines.length < 2) {
-        console.warn("\x1b[33m⚠️  Warning:\x1b[0m No salt detected. Using less secure mode without PBKDF2.\n");
+    const isHex = /^[0-9a-fA-F]{32}$/.test(lines[0]);
 
-        encryptedMessage = lines[0];
-        derivedLetters = key.toUpperCase().replace(/[^A-Z]/g, "").split('');
-    } else {
+    if (isHex && lines.length > 1) {
         const saltHex = lines[0];
         const salt = Buffer.from(saltHex, 'hex');
         encryptedMessage = lines[1];
 
         const derivedKey = deriveKey(key, salt);
         derivedLetters = getDerivedLetters(derivedKey);
+    } else {
+        console.warn("\x1b[33m⚠️  Warning:\x1b[0m No salt detected. Using less secure mode without PBKDF2.\n");
+
+        encryptedMessage = lines.join('');
+        derivedLetters = key.toUpperCase().replace(/[^A-Z]/g, "").split('');
     }
 
     const message = encryptedMessage.toUpperCase().replace(/[^A-Z]/g, "");
@@ -86,6 +84,6 @@ else if (mode === 'decipher') {
     console.log(`➜ Output file: \x1b[1m${outputFile}\x1b[0m`);
 }
 else {
-    console.error("\x1b[31m❌ Error:\x1b[0m Invalid mode. Use 'cypher' or 'decipher'.");
+    console.error("\x1b[31m❌ Error:\x1b[0m Invalid mode. Use 'cipher' or 'decipher'.");
     process.exit(1);
 }
