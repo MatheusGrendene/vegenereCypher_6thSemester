@@ -3,7 +3,7 @@
 ## Description
 This is a project my professor from System's Security had asked our class to do, each student had to pick a cipher and develop it.
 
-This project only encrypt and decrypt letters, all of the non aphabetic characters in the input file will NOT be read and encrypted. We'll also be using only uppercase, no need to type the message or key in uppercase though, the code already converts it ;)
+This project only encrypt and decrypt letters, all of the non aphabetic characters in the input file will NOT be read and encrypted. We'll also be using only uppercase, no need to type the message or password in uppercase though, the code already converts it ;)
 
 ### Key Derivation
 
@@ -17,7 +17,7 @@ We'll be using, for now, the terminal so we can run the script.<br>
 So go ahead and Open the project's folder on the terminal or navigate to it in the terminal.
 
 The command we'll be typing will look like this:<br>
-`node vegenere.js <file.txt> <Key> <mode>`<br>
+`node vegenere.js <file.txt> <password> <mode>`<br>
 * The file can be named what ever you like.<br>
 * The Key should be typed in the terminal with the rest of the command
 * The available modes are `'cipher'` and `decipher`.
@@ -25,15 +25,16 @@ The command we'll be typing will look like this:<br>
 ### Encrypt
 
 To encrypt you should have a text file with the message for encryption.<br>
-For this we'll use "to-decipher-file-name.txt" as a file example and "key" as key
+For this we'll use "to-decipher-file-name.txt" as a file example and "key" as password
 
 * Enter `node vegenere.js to-cipher-file-name.txt key cipher` on the terminal
 
 ### Decrypt
 
 To decrypt you should have a text file with the message for decryption.<br>
-For this we'll use "to-decipher-file-name.txt" as a file example and "key" as key
+For this we'll use "to-decipher-file-name.txt" as a file example and "key" as password
 * Enter `node vegenere.js to-decipher-file-name.txt key decipher` on the terminal
+Be sure to input the exact
 
 
 ### Output
