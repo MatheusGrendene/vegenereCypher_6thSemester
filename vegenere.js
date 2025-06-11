@@ -20,8 +20,6 @@ const digest = 'sha256';
 
 const derivedKey = crypto.pbkdf2Sync(password, salt, interations, keyLength, digest);
 
-console.log("Chave derivada:", derivedKey.toString('hex'));
-
 const derivedLetters=[];
 // Mapeia os bytes da chave derivada para letras A-Z
 for (let i = 0; i < derivedKey.length; i++) {
@@ -53,16 +51,19 @@ let expandedKey = expandKey(key.toUpperCase().replace(/[^A-Z]/g, ""));
 let encryptedMessage = "";
 let decryptedMessage = "";
 
+let inputBase = inputFile.replace('.txt', '');
+
+let outputFile;
 if (mode === 'cypher') {
     expandedKey = expandKey(derivedLetters.join(""));
-    encryptMessage=encryptMessage(message, expandedKey);
-    decryptedMessage = decryptMessage(encryptMessage, expandedKey);
-    console.log("Mensagem criptografada:", encryptedMessage);
-    console.log("Mensagem descriptografada:", decryptedMessage);
+    encryptedMessage=encryptMessage(message, expandedKey);
+    outputFile = `${inputBase}_cifrado.txt`;
+    fs.writeFileSync(outputFile, salt.toString('hex')+'\n'+encryptedMessage);
 }
 else if (mode === 'decypher') {
-    decryptMessage = decryptMessage(encryptMessage, expandedKey);
-    console.log("Mensagem descriptografada:", encryptedMessage);
+    decryptedMessage = decryptMessage(encryptMessage, expandedKey);
+    outputFile = `${inputBase.replace('_cifrado','')}_decifrado.txt`;
+    fs.writeFileSync(outputFile, decryptedMessage);
 }
 else {
     console.error("Modo inválido. Use 'cifrar' ou 'decifrar'.");
