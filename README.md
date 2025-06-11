@@ -3,7 +3,7 @@
 ## Description
 This is a project my professor from System's Security had asked our class to do, each student had to pick a cipher and develop it.
 
-This project only encrypt and decrypt letters, all of the non aphabetic characters in the input file will NOT be read and encrypted. We'll also be using only capital letters, no need to type the message or key in capital letters though, the code already converts it ;)
+This project only encrypt and decrypt letters, all of the non aphabetic characters in the input file will NOT be read and encrypted. We'll also be using only uppercase, no need to type the message or key in uppercase though, the code already converts it ;)
 
 ### Key Derivation
 
