@@ -1,0 +1,19 @@
+{
+  "name": "vegenerecypher_6thsemester",
+  "version": "1.0.0",
+  "description": "This is a project my professor from Systems Security has asked our class to do, each student has to pick a cypher and develop it.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node vegenere.js teste.txt KEY cifrar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusGrendene/vegenereCypher_6thSemester.git"
+  },
+  "author": "Matheus Grendene Brasil Gomes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusGrendene/vegenereCypher_6thSemester/issues"
+  },
+  "homepage": "https://github.com/MatheusGrendene/vegenereCypher_6thSemester#readme"
+}
